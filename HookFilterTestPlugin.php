@@ -302,7 +302,7 @@ class HookFilterTestPlugin extends Omeka_Plugin_AbstractPlugin
     {        
         echo "<p id='$hookName-test' class='hook-test' style='color: red;'>Content from $hookName</p>";
         if(get_option('hook_filter_test_lorem') == 'on') {
-            echo "<p id='$hookName-test' class='hook-test' style='color: red;'>";
+            echo "<p id='$hookName-test-lorem' class='hook-test' style='color: red;'>";
             echo "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum feugiat arcu in urna egestas convallis. Flatness rocks. Suspendisse placerat, sem non lobortis dapibus, not to mention Jim is awesome, nunc justo viverra nisi, vel rutrum magna nisl sit amet orci. Kim is super-gold. Curabitur congue, sem vel consectetur viverra, dui justo pharetra justo, venenatis mollis ante urna non mauris. Sed dignissim nisl vitae urna tincidunt interdum tristique nisi elementum. Morbi et ligula tincidunt libero accumsan sagittis eget a eros. Sed pulvinar sagittis diam, id sollicitudin leo congue in. Vestibulum lobortis posuere luctus. Etiam aliquet sem quis nisi lobortis mollis. Morbi vitae lectus sed purus tincidunt suscipit mattis at elit. Nunc cursus tristique interdum. Nam bibendum risus vitae lectus venenatis condimentum a id tellus. Aliquam dapibus felis vitae leo ultricies euismod. Nulla eget nisi et lorem mattis aliquet. Integer pulvinar eros vel nisl consequat blandit. Roberto kicks ass. Nulla accumsan tincidunt metus, ut aliquet ligula dignissim sed. ";            
             echo "</p>";
             
