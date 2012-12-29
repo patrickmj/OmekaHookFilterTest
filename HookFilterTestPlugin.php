@@ -49,9 +49,26 @@ class HookFilterTestPlugin extends Omeka_Plugin_AbstractPlugin
                 'public_advanced_search',
                 'public_items_browse',
                 'public_items_browse_each',
-                'public_items_show'
+                'public_items_show',
+                'config',
+                'config_form'
                 );
 
+    public function hookConfig($args)
+    {
+        $post = $args['post'];
+        if(isset($post['hook_filter_test_lorem'])) {
+            set_option('hook_filter_test_lorem', 'on');
+        } else {
+            set_option('hook_filter_test_lorem', false);
+        }
+    }
+    
+    public function hookConfigForm($args)
+    {
+        include(PLUGIN_DIR . '/HookFilterTest/config_form.php');
+    }
+    
     public function hookAdminItemsForm($args)
     {
         $this->_addHookContent($args, "admin_items_form");
@@ -284,10 +301,16 @@ class HookFilterTestPlugin extends Omeka_Plugin_AbstractPlugin
     private function _addHookContent($args, $hookName)
     {        
         echo "<p id='$hookName-test' class='hook-test' style='color: red;'>Content from $hookName</p>";
+        if(get_option('hook_filter_test_lorem') == 'on') {
+            echo "<p id='$hookName-test' class='hook-test' style='color: red;'>";
+            echo "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum feugiat arcu in urna egestas convallis. Flatness rocks. Suspendisse placerat, sem non lobortis dapibus, not to mention Jim is awesome, nunc justo viverra nisi, vel rutrum magna nisl sit amet orci. Kim is super-gold. Curabitur congue, sem vel consectetur viverra, dui justo pharetra justo, venenatis mollis ante urna non mauris. Sed dignissim nisl vitae urna tincidunt interdum tristique nisi elementum. Morbi et ligula tincidunt libero accumsan sagittis eget a eros. Sed pulvinar sagittis diam, id sollicitudin leo congue in. Vestibulum lobortis posuere luctus. Etiam aliquet sem quis nisi lobortis mollis. Morbi vitae lectus sed purus tincidunt suscipit mattis at elit. Nunc cursus tristique interdum. Nam bibendum risus vitae lectus venenatis condimentum a id tellus. Aliquam dapibus felis vitae leo ultricies euismod. Nulla eget nisi et lorem mattis aliquet. Integer pulvinar eros vel nisl consequat blandit. Roberto kicks ass. Nulla accumsan tincidunt metus, ut aliquet ligula dignissim sed. ";            
+            echo "</p>";
+            
+        }
         if(strpos( $hookName, '_form') !== false) {
             $view = $args['view'];
-            echo $view->formTextarea($hookName . 'test-form-textarea', $hookName . ' Form Text Area Test',  array('label'=>$hookName . ' Form',  'class'=>'hook-test'));
-//            echo $view->formText($hookName . 'test-form-textarea', $hookName . ' Form Text Test',  array('label'=>$hookName . ' Form',  'class'=>'hook-test'));
+            echo $view->formTextarea($hookName . 'test-form-textarea', $hookName . ' Form Text Area Test',  array('label'=>$hookName . ' Form',  'class'=>'hook-test', 'style'=>'color: red;'));
+//            echo $view->formText($hookName . 'test-form-text', $hookName . ' Form Text Test',  array('label'=>$hookName . ' Form',  'class'=>'hook-test'));
         }
     }
 }
