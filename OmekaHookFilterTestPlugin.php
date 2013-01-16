@@ -71,11 +71,14 @@ class OmekaHookFilterTestPlugin extends Omeka_Plugin_AbstractPlugin
     
     public function setUp()
     {
-        parent::setUp();
         if(plugin_is_active('ExhibitBuilder')) {
             $this->_hooks[] = 'show_exhibit_item';
             $this->_hooks[] = 'show_exhibit';
         }
+        if(plugin_is_active('Contribution')) {
+        	$this->_hooks[] = 'admin_contribution_settings_panel_buttons';
+        }
+        parent::setUp();
     }
     
     public function hookAdminItemsForm($args)
@@ -317,6 +320,11 @@ class OmekaHookFilterTestPlugin extends Omeka_Plugin_AbstractPlugin
     public function hookShowExhibit($args)
     {
         $this->_addHookContent($args, "show_exhibit");
+    }
+    
+    public function hookAdminContributionSettingsPanelButtons($args)
+    {
+    	$this->_addHookContent($args, "admin_contribution_settings_panel_buttons");
     }
     
     private function _addHookContent($args, $hookName)
