@@ -1,6 +1,6 @@
 <?php
 
-class HookFilterTestPlugin extends Omeka_Plugin_AbstractPlugin
+class OmekaHookFilterTestPlugin extends Omeka_Plugin_AbstractPlugin
 
 {
     protected $_hooks = array(
