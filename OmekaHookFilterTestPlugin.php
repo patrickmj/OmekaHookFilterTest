@@ -66,7 +66,7 @@ class OmekaHookFilterTestPlugin extends Omeka_Plugin_AbstractPlugin
     
     public function hookConfigForm($args)
     {
-        include(PLUGIN_DIR . '/HookFilterTest/config_form.php');
+        include(PLUGIN_DIR . '/OmekaHookFilterTest/config_form.php');
     }
     
     public function setUp()
